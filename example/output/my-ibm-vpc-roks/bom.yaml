@@ -1,0 +1,51 @@
+apiVersion: cloudnativetoolkit.dev/v1alpha1
+kind: BillOfMaterial
+metadata:
+  name: my-ibm-vpc-roks
+spec:
+  modules:
+    - name: ibm-ocp-vpc
+      alias: cluster
+      version: v1.15.4
+      variables:
+        - name: worker_count
+          value: 1
+    - name: ibm-vpc
+      alias: ibm-vpc
+      version: v1.16.0
+    - name: ibm-vpc-gateways
+      alias: ibm-vpc-gateways
+      version: v1.9.0
+    - name: ibm-vpc-subnets
+      alias: ibm-vpc-subnets
+      version: v1.13.2
+    - name: ibm-resource-group
+      alias: resource_group
+      version: v3.2.16
+    - name: ibm-object-storage
+      alias: cos
+      version: v4.0.3
+  variables:
+    - name: region
+      type: string
+      description: The IBM Cloud region where the cluster will be/has been installed.
+    - name: ibmcloud_api_key
+      type: string
+      description: The IBM Cloud api token
+    - name: worker_count
+      type: number
+      description: >-
+        The number of worker nodes that should be provisioned for classic
+        infrastructure
+      defaultValue: 1
+    - name: cluster_flavor
+      type: string
+      description: The machine type that will be provisioned for classic infrastructure
+      defaultValue: bx2.4x16
+    - name: ibm-vpc-subnets__count
+      type: number
+      description: The number of subnets that should be provisioned
+      defaultValue: 3
+    - name: resource_group_name
+      type: string
+      description: The name of the resource group
