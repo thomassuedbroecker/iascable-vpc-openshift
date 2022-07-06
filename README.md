@@ -97,27 +97,6 @@ You can find details of the create files and folders also in [IasCable starting 
 
 In the newly created `bom.yaml` file we find more detailed information about modules we are going to use.
 
-* [(Network) IBM VPC `ibm-vpc`](https://github.com/cloud-native-toolkit/terraform-ibm-vpc)
-* [(Network) IBM VPC Subnets `ibm-vpc-subnets`](https://github.com/cloud-native-toolkit/terraform-ibm-vpc-subnets)
-* [(Network) IBM Cloud VPC Public Gateway `ibm-vpc-gateways`](https://github.com/cloud-native-toolkit/terraform-ibm-vpc-gateways)
-  
-  This module makes use of the output from other modules:
-  * Resource group - github.com/cloud-native-toolkit/terraform-ibm-resource-group.git
-  * VPC - github.com/cloud-native-toolkit/terraform-ibm-vpc.git
-
-* [(Cluster) IBM OpenShift VPC cluster `ibm-ocp-vpc`](https://github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc)
-
-  This module makes use of the output from other modules:
-  * Object Storage - github.com/cloud-native-toolkit/terraform-ibm-object-storage.git
-  * VPC - github.com/cloud-native-toolkit/terraform-ibm-vpc.git
-  * Subnet - github.com/cloud-native-toolkit/terraform-ibm-vpc.git
-
-
-Added modules based on module dependencies:
-
-* [(IAM) IBM Resource Group `ibm-resource-group`](https://github.com/cloud-native-toolkit/terraform-ibm-resource-group)
-* [(Storage) IBM Object Storage `ibm-object-storage`](https://github.com/cloud-native-toolkit/terraform-ibm-object-storage)
-
 ```yaml
 apiVersion: cloudnativetoolkit.dev/v1alpha1
 kind: BillOfMaterial
@@ -171,4 +150,29 @@ spec:
       type: string
       description: The name of the resource group
 ```
+
+* [(Network) IBM VPC `ibm-vpc`](https://github.com/cloud-native-toolkit/terraform-ibm-vpc)
+* [(Network) IBM VPC Subnets `ibm-vpc-subnets`](https://github.com/cloud-native-toolkit/terraform-ibm-vpc-subnets)
+* [(Network) IBM Cloud VPC Public Gateway `ibm-vpc-gateways`](https://github.com/cloud-native-toolkit/terraform-ibm-vpc-gateways)
+  
+  This module makes use of the output from other modules:
+  * Resource group - github.com/cloud-native-toolkit/terraform-ibm-resource-group.git
+  * VPC - github.com/cloud-native-toolkit/terraform-ibm-vpc.git
+
+* [(Cluster) IBM OpenShift VPC cluster `ibm-ocp-vpc`](https://github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc)
+
+  This module makes use of the output from other modules:
+  * Object Storage - github.com/cloud-native-toolkit/terraform-ibm-object-storage.git
+  * VPC - github.com/cloud-native-toolkit/terraform-ibm-vpc.git
+  * Subnet - github.com/cloud-native-toolkit/terraform-ibm-vpc.git
+
+Added modules based on module dependencies:
+
+* [(IAM) IBM Resource Group `ibm-resource-group`](https://github.com/cloud-native-toolkit/terraform-ibm-resource-group)
+* [(Storage) IBM Object Storage `ibm-object-storage`](https://github.com/cloud-native-toolkit/terraform-ibm-object-storage)
+
+We can verify the dependencies with the `dependencies.dot` content for example in [Graphviz Online](https://dreampuf.github.io/GraphvizOnline/).
+
+![](images/dependency-graph.png)
+
 
