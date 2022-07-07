@@ -27,3 +27,15 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+example/output/my-ibm-vpc-roks/terraform/.terraform.lock.hcl
+example/output/my-ibm-vpc-roks/terraform/clis-debug.log
+example/output/my-ibm-vpc-roks/terraform/.kube/b88790957171731697722dc07f0f923283278cf784b9fce792b831afbab8d83e_default-cluster_admin_k8sconfig/admin-key.pem
+example/output/my-ibm-vpc-roks/terraform/.kube/b88790957171731697722dc07f0f923283278cf784b9fce792b831afbab8d83e_default-cluster_admin_k8sconfig/admin.pem
+example/output/my-ibm-vpc-roks/terraform/.kube/b88790957171731697722dc07f0f923283278cf784b9fce792b831afbab8d83e_default-cluster_admin_k8sconfig/config.yml
+example/output/my-ibm-vpc-roks/terraform/.kube/b88790957171731697722dc07f0f923283278cf784b9fce792b831afbab8d83e_default-cluster_k8sconfig/config.yml
+example/output/my-ibm-vpc-roks/terraform/bin2/.igc-release
+example/output/my-ibm-vpc-roks/terraform/bin2/igc
+example/output/my-ibm-vpc-roks/terraform/bin2/jq
+example/output/my-ibm-vpc-roks/terraform/bin2/yq3
+example/output/my-ibm-vpc-roks/terraform/bin2/yq4
+.DS_Store

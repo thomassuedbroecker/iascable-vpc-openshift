@@ -18,7 +18,28 @@ That is the cloud environment we will use.
 
 * IBM Cloud
 
-## Step by step example setup
+### Step by step example setup
+
+This is a step by step example setup to create a `Virtual Private Cloud` with three `Subnets` on IBM Cloud.
+
+* 1 x [`Virtual Private Cloud`](https://www.ibm.com/cloud/learn/vpc)
+* 3 x [`Subnets`](https://cloud.ibm.com/docs/subnets?topic=subnets-getting-started)
+* 3 x [`Subnets`](https://cloud.ibm.com/docs/subnets?topic=subnets-getting-started)
+* 2 x [`Access Control Lists`](https://cloud.ibm.com/docs/vpc?topic=vpc-using-acls)
+* 1 x [`Routing Table`](https://cloud.ibm.com/docs/vpc?topic=vpc-about-custom-routes)
+* 2 x [`Security Groups`](https://cloud.ibm.com/docs/security-groups?topic=security-groups-about-ibm-security-groups)
+* 3 x [Public Gateway](https://cloud.ibm.com/docs/vpc?topic=vpc-about-networking-for-vpc)
+* 1 x [Virtual Private Endpoint Gateway](https://cloud.ibm.com/docs/vpc?topic=vpc-about-vpe)
+* 1 x [`Red Hat OpenShift cluster`](https://www.ibm.com/cloud/openshift)
+  
+  * 3 x [`Worker Nodes`](https://cloud.ibm.com/docs/containers?topic=containers-add_workers) **one** in each zone
+  * 1 x [Default worker pool](https://cloud.ibm.com/docs/containers?topic=containers-add_workers)
+
+* 1 x [`Cloud Object Storage`](https://cloud.ibm.com/objectstorage/create)
+
+* Simplified architecture overview
+
+![](images/VPC-RedHatOpenShift.drawio.png)
 
 ### Step 1: Write the `Bill of Material` BOM file
 
@@ -175,4 +196,62 @@ We can verify the dependencies with the `dependencies.dot` content for example i
 
 ![](images/dependency-graph.png)
 
+### Step 4: Execute the `terraform init` command
 
+Navigate to the `output/my-ibm-vpc-roks/terraform` folder and execute the `terraform init` command.
+
+```sh
+cd output/my-ibm-vpc-roks/terraform
+terraform init
+```
+
+### Step 5: Execute the `terraform apply`  command
+
+Execute the `terraform apply` command.
+
+```sh
+terraform apply -auto-approve
+```
+
+> Note: You can create an `IBM Cloud API Key` with following command: `ibmcloud iam api-key-create iascable-example`.
+
+* Input of your variables:
+
+```sh
+var.ibmcloud_api_key
+  The IBM Cloud api token
+  Enter a value: XXX
+
+var.region
+  The IBM Cloud region where the cluster will be/has been installed.
+  Enter a value: eu-de
+
+var.resource_group_name
+  The name of the resource group
+  Enter a value: default
+```
+
+* Output:
+
+Finally you should get this output in your terminal.
+
+```sh
+...
+Apply complete! Resources: 56 added, 0 changed, 0 destroyed.
+```
+
+> Following file were created, that you should delete because these will used for the deletion or update of the resources. I added those files in my case to `.gitignore`.
+
+```sh
+example/output/my-ibm-vpc-roks/terraform/.terraform.lock.hcl
+example/output/my-ibm-vpc-roks/terraform/clis-debug.log
+example/output/my-ibm-vpc-roks/terraform/.kube/b88790957171731697722dc07f0f923283278cf784b9fce792b831afbab8d83e_default-cluster_admin_k8sconfig/admin-key.pem
+example/output/my-ibm-vpc-roks/terraform/.kube/b88790957171731697722dc07f0f923283278cf784b9fce792b831afbab8d83e_default-cluster_admin_k8sconfig/admin.pem
+example/output/my-ibm-vpc-roks/terraform/.kube/b88790957171731697722dc07f0f923283278cf784b9fce792b831afbab8d83e_default-cluster_admin_k8sconfig/config.yml
+example/output/my-ibm-vpc-roks/terraform/.kube/b88790957171731697722dc07f0f923283278cf784b9fce792b831afbab8d83e_default-cluster_k8sconfig/config.yml
+example/output/my-ibm-vpc-roks/terraform/bin2/.igc-release
+example/output/my-ibm-vpc-roks/terraform/bin2/igc
+example/output/my-ibm-vpc-roks/terraform/bin2/jq
+example/output/my-ibm-vpc-roks/terraform/bin2/yq3
+example/output/my-ibm-vpc-roks/terraform/bin2/yq4
+```
