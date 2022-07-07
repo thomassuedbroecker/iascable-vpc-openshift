@@ -46,7 +46,7 @@ This is a step by step example setup to create a [`Virtual Private Cloud`](https
 nano my-vpc-roks-bom.yaml
 ```
 
-Copy and past the following content intoo the `my-vpc-roks-bom.yaml` file.
+Copy and past the following content into the `my-vpc-roks-bom.yaml` file.
 
 ```yaml
 apiVersion: cloudnativetoolkit.dev/v1alpha1
