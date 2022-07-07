@@ -78,7 +78,7 @@ Name: my-ibm-vpc-roks
 Writing output to: ./output
 ```
 
-### Step 3: Verify the create files and folders
+### Step 3: Verify the created files and folders
 
 ```sh
 tree
@@ -113,7 +113,7 @@ tree
 4 directories, 17 files
 ```
 
-You can find details of the create files and folders also in [IasCable starting point GitHub project](https://github.com/thomassuedbroecker/iascable-starting-point) and that [blog post](https://suedbroecker.net/2022/07/06/get-started-with-an-installable-component-infrastructure-by-selecting-components-from-a-catalog-of-available-modules-with-iascable/).
+You can find details of the created files and folders also in [IasCable starting point GitHub project](https://github.com/thomassuedbroecker/iascable-starting-point) and that [blog post](https://suedbroecker.net/2022/07/06/get-started-with-an-installable-component-infrastructure-by-selecting-components-from-a-catalog-of-available-modules-with-iascable/).
 
 In the newly created `bom.yaml` file we find more detailed information about modules we are going to use.
 
@@ -279,4 +279,12 @@ var.region
 var.resource_group_name
   The name of the resource group
   Enter a value: default
+```
+
+* Output:
+
+The final output should be:
+
+```sh
+Destroy complete! Resources: 56 destroyed.
 ```
