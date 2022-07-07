@@ -11,29 +11,28 @@ The following list represents the modules which are referenced in the example [I
 
 Following tools need to be installed on your local computer to follow the step by step instructions.
 
-* Terraform
-* Git
+* [Terraform](https://www.terraform.io/)
+* [Git](https://git-scm.com/)
 
 That is the cloud environment we will use.
 
-* IBM Cloud
+* [IBM Cloud](https://www.ibm.com/cloud)
 
 ### Step by step example setup
 
-This is a step by step example setup to create a `Virtual Private Cloud` with three `Subnets` on IBM Cloud.
+This is a step by step example setup to create a [`Virtual Private Cloud`](https://www.ibm.com/cloud/learn/vpc) and an [`IBM Cloud managed Red Hat OpenShift cluster`](https://www.ibm.com/cloud/openshift).
 
 * 1 x [`Virtual Private Cloud`](https://www.ibm.com/cloud/learn/vpc)
-* 3 x [`Subnets`](https://cloud.ibm.com/docs/subnets?topic=subnets-getting-started)
 * 3 x [`Subnets`](https://cloud.ibm.com/docs/subnets?topic=subnets-getting-started)
 * 2 x [`Access Control Lists`](https://cloud.ibm.com/docs/vpc?topic=vpc-using-acls)
 * 1 x [`Routing Table`](https://cloud.ibm.com/docs/vpc?topic=vpc-about-custom-routes)
 * 2 x [`Security Groups`](https://cloud.ibm.com/docs/security-groups?topic=security-groups-about-ibm-security-groups)
-* 3 x [Public Gateway](https://cloud.ibm.com/docs/vpc?topic=vpc-about-networking-for-vpc)
-* 1 x [Virtual Private Endpoint Gateway](https://cloud.ibm.com/docs/vpc?topic=vpc-about-vpe)
+* 3 x [`Public Gateway`](https://cloud.ibm.com/docs/vpc?topic=vpc-about-networking-for-vpc)
+* 1 x [`Virtual Private Endpoint Gateway`](https://cloud.ibm.com/docs/vpc?topic=vpc-about-vpe)
 * 1 x [`Red Hat OpenShift cluster`](https://www.ibm.com/cloud/openshift)
   
   * 3 x [`Worker Nodes`](https://cloud.ibm.com/docs/containers?topic=containers-add_workers) **one** in each zone
-  * 1 x [Default worker pool](https://cloud.ibm.com/docs/containers?topic=containers-add_workers)
+  * 1 x [`Default worker pool`](https://cloud.ibm.com/docs/containers?topic=containers-add_workers)
 
 * 1 x [`Cloud Object Storage`](https://cloud.ibm.com/objectstorage/create)
 
@@ -240,7 +239,7 @@ Finally you should get this output in your terminal.
 Apply complete! Resources: 56 added, 0 changed, 0 destroyed.
 ```
 
-> Following file were created, that you should delete because these will used for the deletion or update of the resources. I added those files in my case to `.gitignore`.
+> Following files were created, that you should delete because these will used for the deletion or update of the resources. I added those files in my case to `.gitignore`.
 
 ```sh
 example/output/my-ibm-vpc-roks/terraform/.terraform.lock.hcl
@@ -254,4 +253,30 @@ example/output/my-ibm-vpc-roks/terraform/bin2/igc
 example/output/my-ibm-vpc-roks/terraform/bin2/jq
 example/output/my-ibm-vpc-roks/terraform/bin2/yq3
 example/output/my-ibm-vpc-roks/terraform/bin2/yq4
+```
+
+### Step 6: Execute the `terraform destroy` command
+
+> Note: Ensure you didn't delete created files before.
+
+To destroy the provisioned resources, run the following:
+
+```sh
+terraform destroy -auto-approve
+```
+
+>You need to provide the IBM Cloud API Key, the region and the resource group name again, because we didn't save those values in variables.
+
+```sh
+var.ibmcloud_api_key
+  The IBM Cloud api token
+  Enter a value: XXX
+
+var.region
+  The IBM Cloud region where the cluster will be/has been installed.
+  Enter a value: eu-de
+
+var.resource_group_name
+  The name of the resource group
+  Enter a value: default
 ```
